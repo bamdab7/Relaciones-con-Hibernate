@@ -1,22 +1,17 @@
 package hibernateonetomany;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Presidente {
 	@Id
 	private int id;
 	private String nombre;
-	private Double sueldo;
+	private double sueldo;
 	
-	@ManyToOne
-	@JoinColumn(name ="IDPais", foreignKey= @ForeignKey(name = "fk_pais") ) 
-	private Pais pais;
-	
-	
+	//@ManyToOne
+	//@JoinColumn(name ="IDPais", foreignKey= @ForeignKey(name = "fk_pais") ) 
+	//private Pais pais;
 	
 	
 
@@ -24,21 +19,13 @@ public class Presidente {
 		super();
 	}
 
-	public Presidente(int id, String nombre, Double sueldo, Pais pais) {
+	public Presidente(int id, String nombre, Double sueldo) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.sueldo = sueldo;
-		this.pais = pais;
 	}
 	
-	public Pais getPais() {
-			return pais;
-		}
-	
-		public void setPais(Pais pais) {
-			this.pais = pais;
-		}
 	public int getId() {
 		return id;
 	}

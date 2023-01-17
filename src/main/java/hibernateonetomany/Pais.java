@@ -1,11 +1,11 @@
 package hibernateonetomany;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Pais {
@@ -13,6 +13,9 @@ public class Pais {
 	private int codigo;
 	private String nombre;
 	private String continente;
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	private List<Presidente> listaPresidentes;
 	
 	
 	public Pais() {
@@ -26,6 +29,14 @@ public class Pais {
 		this.continente = continente;
 	}
 	
+	public List<Presidente> getListaPresidentes() {
+		return listaPresidentes;
+	}
+
+	public void setListaPresidentes(List<Presidente> listaPresidentes) {
+		this.listaPresidentes = listaPresidentes;
+	}
+
 	public int getCodigo() {
 		return codigo;
 	}
@@ -44,10 +55,14 @@ public class Pais {
 	public void setContinente(String continente) {
 		this.continente = continente;
 	}
-
-	@Override
-	public String toString() {
-		return "Pais [codigo=" + codigo + ", nombre=" + nombre + ", continente=" + continente + "]";
+	
+	//Añadidos a mano, alternativa añadir al constructor del pais los presidentes
+	public void anhadirPresidente(Presidente p ) {
+		listaPresidentes.add(p);
+	}
+	
+	public void borrarPresidente(Presidente p) {
+		listaPresidentes.remove(p);
 	}
 	
 }
